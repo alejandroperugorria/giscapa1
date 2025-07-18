@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PONLE FRENO A LA INSEGURIDAD</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Modales -->
+  <div id="modal">
+    <div id="modal-content">
+      <h2>COMO USAR ESTA APLICACIÓN</h2>
+      <p style="text-align: left; line-height: 1.6;">
+        1. Ubica el punto en el mapa.<br>
+        2. Selecciona el tipo de delito.<br>
+        3. Realiza una breve descripción.<br>
+        4. Presiona <strong>Guardar</strong>.<br>
+        5. Si quieres, puedes descargar el archivo CSV.<br>
+        6. Carga capas GeoJSON o KML y visualiza sus atributos.
+      </p>
+      <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="modalTabla">
+    <div id="modalTablaContent">
+      <h3 id="tituloTabla"></h3>
+      <table id="tablaAtributos" border="1">
+        <thead><tr id="theadTabla"></tr></thead>
+        <tbody id="tbodyTabla"></tbody>
+      </table>
+      <br>
+      <button onclick="cerrarModalTabla()">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="titulo">PONLE FRENO A LA INSEGURIDAD</div>
+  <div id="leyenda">Denuncia actividades Ilícitas</div>
+
+  <div id="contenedor">
+    <div id="map"></div>
+    <div id="formulario">
+      <label>Tipo de denuncia:
+        <select id="tipo">
+          <option>Robo</option>
+          <option>Accidente</option>
+          <option>Disturbios</option>
+          <option>Venta de droga</option>
+        </select>
+      </label>
+      <label>Resumen:
+        <textarea id="resumen" rows="3"></textarea>
+      </label>
+      <button onclick="guardarDenuncia()">Guardar denuncia</button>
+      <button onclick="descargarCSV()">Descargar CSV</button>
+      <button onclick="seleccionarTodos()">Seleccionar Todos</button>
+      <hr>
+      <label for="file">Cargar capa GeoJSON/KML:</label>
+      <input type="file" id="file" accept=".geojson,.kml" />
+      <hr>
+      <h3>Capas cargadas:</h3>
+      <div id="capasCargadas"></div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th class="select-col"><input type="checkbox" onclick="seleccionarTodos(this)"></th>
+          <th>Tipo</th>
+          <th>Resumen</th>
+          <th>Fecha</th>
+          <th>Latitud</th>
+          <th>Longitud</th>
+          <th>Ir</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
